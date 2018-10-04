@@ -21,6 +21,7 @@ Tecnologias utilizadas:
 ## Ambiente
 * Ruby + Rails: https://gorails.com/setup/ (versão utilizado: 2.5.1)
 * Mongodb: https://docs.mongodb.com/manual/administration/install-community/
+    * Após a instalação, dar o start no mongo 
 * curl (para testes, ou qualquer outro http client para executar requisições POST)
 
 ## Setup do projeto
@@ -44,7 +45,7 @@ rails server
     
     ```
     Parâmetros obrigatórios: `url | String`   
-    Exemplos:
+    Exemplos: (utilizar terminal para o POST)
     ```
     curl -d "url=https://github.com" -X POST http://localhost:3000/api/v1/scrap
     curl -d "url=https://www.globo.com" -X POST http://localhost:3000/api/v1/scrap
@@ -56,7 +57,7 @@ rails server
 
 * Buscar nas páginas indexadas:
     ```
-    GET  /api/v1/scrap
+    GET  /api/v1/search
     
     ```
     Parâmetros obrigatórios: `q | String`  
