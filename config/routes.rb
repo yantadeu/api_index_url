@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'scrap', action: :create, controller: 'scrapper'
       get 'search', action: :search, controller: 'scrapper'
+      get 'tickers', action: :tickers, controller: 'scrapper'
     end
   end
 
