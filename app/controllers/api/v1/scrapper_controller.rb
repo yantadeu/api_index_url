@@ -31,7 +31,7 @@ module Api
       # GET /api/v1/tickers
       def tickers
         begin
-          request = RestClient.get('https://api.coinmarketcap.com/v2/ticker/', [])
+          request = RestClient.get('https://api.coinmarketcap.com/v2/ticker/')
           @tickers = JSON.parse(request.body)
           render json: @tickers, status: :ok
           
