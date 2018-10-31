@@ -31,12 +31,12 @@ module Api
       # GET /api/v1/tickers
       def tickers
         begin
-          page = MetaInspector.new('https://api.coinmarketcap.com/v2/ticker/')
-          @tickers = Nokogiri::HTML(page.to_s).at('body').at('pre').text
+          request = RestClient.get('https://api.coinmarketcap.com/v2/ticker/', [])
+          @tickers = JSON.parse(request.body)
           render json: @tickers, status: :ok
           
         rescue => error
-          render json: 'Houve um erro inesperado ao buscar os tickers', status: :internal_server_error
+          render json: error.to_s, status: :internal_server_error
         end
       end
 
