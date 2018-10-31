@@ -32,7 +32,7 @@ module Api
       def tickers
         begin
           request = RestClient.get('https://api.coinmarketcap.com/v2/ticker/')
-          @tickers = JSON.parse(request.body)
+          @tickers = JSON.parse(request.body.data.data)
           render json: @tickers, status: :ok
           
         rescue => error
