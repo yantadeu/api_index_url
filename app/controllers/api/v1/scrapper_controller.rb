@@ -28,6 +28,17 @@ module Api
         end
       end
 
+      # GET /api/v1/tickers
+      def tickers
+        begin
+          page = MetaInspector.new('https://api.coinmarketcap.com/v2/ticker/')
+          @tickers = Nokogiri::HTML(page.to_s).at('body').at('pre').text
+          render json: @tickers, status: :ok
+          
+        rescue => error
+          render json: 'Houve um erro inesperado ao buscar os tickers', status: :internal_server_error
+        end
+      end
 
       # GET /api/v1/scrap
       def search
