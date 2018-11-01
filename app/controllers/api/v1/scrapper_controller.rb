@@ -31,7 +31,7 @@ module Api
       # GET /api/v1/tickers
       def tickers
         begin
-          request = RestClient.get('https://api.coinmarketcap.com/v2/ticker/')
+          request = RestClient.get("https://api.coinmarketcap.com/v2/ticker/?start=#{search_params['start']}&limit=#{search_params['limit']}&sort=#{search_params['rank']}")
           tickers = JSON.parse(request.body)
           @data = tickers['data']
           render json: @data, status: :ok
@@ -57,7 +57,7 @@ module Api
       private
 
       def search_params
-        params.permit(:q)
+        params.permit(:q, :start, :limit, :sort)
       end
 
       def scrap_params
